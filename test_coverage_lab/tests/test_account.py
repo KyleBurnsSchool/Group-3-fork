@@ -114,6 +114,26 @@ Each test should include:
 # - Verify that depositing a positive amount correctly increases the balance.
 # Target Method: deposit()
 
+# ===========================
+# Test: Positive Deposit
+# Author: Abel Berhe
+# Date: 2026-09-18
+# Description: Ensures a positive amount deposits correctly increases the balance.
+# ===========================
+def test_positive_deposit():
+    """Test depositing a positive amount into an account"""
+    account = Account(name="John Doe", email="johndoe@example.com", balance=100)
+
+    # Deposit a positive amount
+    account.deposit(50)
+
+    # Verify the balance increased correctly
+    assert account.balance == 150
+
+
+
+
+
 # Student 5: Test deposit with zero/negative values
 # - Ensure zero or negative deposits are rejected.
 # Target Method: deposit()
