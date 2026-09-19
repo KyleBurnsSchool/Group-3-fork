@@ -43,7 +43,7 @@ class TestCounterEndpoints:
         invalid_names = ["", " ", "   ", "counter with spaces", "counter/with/slash", "counter?with?question"]
         for name in invalid_names:
             result = client.post(f'/counters/{name}')
-            assert result.status_code == 400
+            assert result.status_code == status.HTTP_400_BAD_REQUEST
             assert result.get_json() == {
                 "error": "Counter name must contain only letters and numbers"
             }
