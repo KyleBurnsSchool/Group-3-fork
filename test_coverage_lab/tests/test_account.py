@@ -121,6 +121,20 @@ Each test should include:
 # Student 6: Test valid withdrawal
 # - Verify that withdrawing a valid amount correctly decreases the balance.
 # Target Method: withdraw()
+# ===========================
+# Test: Valid Account Withdrawal
+# Author: Mingchuan Hu
+# Date: 2025-09-18
+# Description: Ensure a valid withdrawal correctly decreases the balance
+# ===========================
+def test_valid_withdrawal():
+    """Test withdrawing a valid amount from an account"""
+    account = Account(name="Mingchuan Hu", email="ming.hu@example.com", balance = 100.0)
+
+    account.withdraw(35.0)
+
+    assert account.balance == 65.0
+
 
 # Student 7: Test withdrawal with insufficient funds
 # - Ensure withdrawal fails when balance is insufficient.
