@@ -145,6 +145,27 @@ def test_positive_deposit():
 # Student 7: Test withdrawal with insufficient funds
 # - Ensure withdrawal fails when balance is insufficient.
 # Target Method: withdraw()
+# ===========================
+# Test: Test withdrawal with insufficient funds
+# Author: Devin Allen
+# Date: 2026-09-18
+# Description: Ensure withdrawing more than the available balance raises DataValidationError and does not change the balance. 
+# ===========================
+def test_withdraw_insufficient_funds():
+    "Test withdrawing more than the avilable account balance"
+    account = Account(
+        name = "Apple Apple",
+        email= "Apple@test.com",
+        balance = 100
+        )
+
+    # Attempt to withdraw greater money than account
+    with pytest.raises(DataValidationError, match="Insufficient balance"): 
+        account.withdraw(150)
+
+    # Verify failed withdrawal
+    assert account.balance == 100
+
 
 # Student 8: Test password hashing
 # - Ensure passwords are properly hashed.
