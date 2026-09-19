@@ -134,6 +134,28 @@ Each test should include:
 # Student 9: Test account deactivation/reactivation
 # - Ensure accounts can be deactivated and reactivated correctly.
 # Target Methods: deactivate() / reactivate()
+# ===========================
+# Test: Account Deactivation and Reactivation
+# Author: Omari Rich
+# Date: 2026-09-18
+# Description: Ensure an account can be deactivated and reactivated.
+# ===========================
+
+def test_account_deactivation_reactivation():
+    """Test deactivating and reactivating an account"""
+    account = Account(
+        name="Omari Rich",
+        email="omari.rich@example.com",
+        disabled=False
+    )
+
+    assert account.disabled is False
+
+    account.deactivate()
+    assert account.disabled is True
+
+    account.reactivate()
+    assert account.disabled is False
 
 # Student 10: Test email uniqueness enforcement
 # - Ensure duplicate emails are not allowed.
