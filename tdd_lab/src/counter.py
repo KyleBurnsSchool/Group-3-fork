@@ -3,6 +3,7 @@ Counter API Implementation
 """
 from flask import Flask, jsonify
 from . import status
+import re
 
 app = Flask(__name__)
 
@@ -15,6 +16,8 @@ def counter_exists(name):
 @app.route('/counters/<name>', methods=['POST'])
 def create_counter(name):
     """Create a counter"""
+    if not re.match("^[a-zA-Z0-9]+$", name):
+        return jsonify({"error": "Counter name must contain only letters and numbers"}), status.HTTP_400_BAD_REQUEST
     if counter_exists(name):
         return jsonify({"error": f"Counter {name} already exists"}), status.HTTP_409_CONFLICT
     COUNTERS[name] = 0

@@ -49,3 +49,21 @@ class TestCounterEndpoints:
 
         assert result.status_code == status.HTTP_200_OK
         assert result.get_json() == {"omari": 0}
+        
+    def test_invalid_counter_names(self, client):
+        """It should reject invalid counter names"""
+        # Invalid names
+        invalid_names = [" ", "   ", "counter with spaces", "cou$nter!"]
+        for name in invalid_names:
+            result = client.post(f'/counters/{name}')
+            assert result.status_code == status.HTTP_400_BAD_REQUEST
+            assert result.get_json() == {
+                "error": "Counter name must contain only letters and numbers"
+            }
+        # Test valid names
+        valid_names = ["123", "abcd", "COUNTER3"]
+        for name in valid_names:
+            result = client.post(f'/counters/{name}')
+            assert result.status_code == status.HTTP_201_CREATED
+            assert result.get_json() == {name: 0}
+        
