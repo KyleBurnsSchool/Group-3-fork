@@ -151,6 +151,19 @@ def test_positive_deposit():
 # - Verify that password verification works correctly.
 # Target Methods: set_password() / check_password()
 
+# ===========================
+# Test: Test password hashing
+# Author: David Penrose
+# Date: 2026-09-18
+# Description: Ensure passwords are properly hashed and can be verified.
+# ===========================
+def test_password_hashing():
+    """Test password hashing and verification"""
+    account = Account(name="John Doe", email="johndoe@example.com", balance=100)
+    account.set_password("securepassword")
+    assert account.check_password("securepassword") is True
+    assert account.check_password("wrongpassword") is False
+
 # Student 9: Test account deactivation/reactivation
 # - Ensure accounts can be deactivated and reactivated correctly.
 # Target Methods: deactivate() / reactivate()
