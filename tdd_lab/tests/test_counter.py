@@ -36,3 +36,9 @@ class TestCounterEndpoints:
 
         assert result.status_code == status.HTTP_200_OK
         assert result.get_json() == {"omari": 0}
+
+    def test_get_nonexistent_counter(self, client):
+        """It should return 404 when retrieving a non-existent counter"""
+        result = client.get('/counters/nonexistent')
+
+        assert result.status_code == status.HTTP_404_NOT_FOUND
