@@ -141,6 +141,20 @@ def test_positive_deposit():
 # Student 6: Test valid withdrawal
 # - Verify that withdrawing a valid amount correctly decreases the balance.
 # Target Method: withdraw()
+# ===========================
+# Test: Valid Account Withdrawal
+# Author: Mingchuan Hu
+# Date: 2026-09-18
+# Description: Ensure a valid withdrawal correctly decreases the balance
+# ===========================
+def test_valid_withdrawal():
+    """Test withdrawing a valid amount from an account"""
+    account = Account(name="Mingchuan Hu", email="ming.hu@example.com", balance = 100.0)
+
+    account.withdraw(35.0)
+
+    assert account.balance == 65.0
+
 
 # Student 7: Test withdrawal with insufficient funds
 # - Ensure withdrawal fails when balance is insufficient.
@@ -150,6 +164,19 @@ def test_positive_deposit():
 # - Ensure passwords are properly hashed.
 # - Verify that password verification works correctly.
 # Target Methods: set_password() / check_password()
+
+# ===========================
+# Test: Test password hashing
+# Author: David Penrose
+# Date: 2026-09-18
+# Description: Ensure passwords are properly hashed and can be verified.
+# ===========================
+def test_password_hashing():
+    """Test password hashing and verification"""
+    account = Account(name="John Doe", email="johndoe@example.com", balance=100)
+    account.set_password("securepassword")
+    assert account.check_password("securepassword") is True
+    assert account.check_password("wrongpassword") is False
 
 # Student 9: Test account deactivation/reactivation
 # - Ensure accounts can be deactivated and reactivated correctly.

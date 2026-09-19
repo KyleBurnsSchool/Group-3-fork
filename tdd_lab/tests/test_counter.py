@@ -26,17 +26,8 @@ class TestCounterEndpoints:
     def test_create_counter(self, client):
         """It should create a counter"""
         result = client.post('/counters/foo')
-        assert result.status_code == status.HTTP_201_CREATED
-
-
-
-
-
-
-
-
-
-
+        assert result.status_code == status.HTTP_201_CREATED    
+    
     def test_delete_counter(self, client):
         """It should delete an existing counter"""
         # Create a counter first
@@ -49,3 +40,12 @@ class TestCounterEndpoints:
 
         # Confirm it's actually gone
         assert 'foo' not in COUNTERS
+    
+    def test_get_existing_counter(self, client):
+        """It should retrieve an existing counter"""
+        client.post('/counters/omari')
+
+        result = client.get('/counters/omari')
+
+        assert result.status_code == status.HTTP_200_OK
+        assert result.get_json() == {"omari": 0}

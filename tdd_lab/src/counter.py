@@ -20,14 +20,14 @@ def create_counter(name):
     COUNTERS[name] = 0
     return jsonify({name: COUNTERS[name]}), status.HTTP_201_CREATED
 
-
-
-
-
-
 @app.route('/counters/<name>', methods=['DELETE'])
 def delete_counter(name):
     """Delete a counter"""
     if counter_exists(name):
         del COUNTERS[name]
     return '', status.HTTP_204_NO_CONTENT
+
+@app.route('/counters/<name>', methods=['GET'])
+def get_counter(name):
+    """Retrieve an existing counter"""
+    return jsonify({name: COUNTERS[name]}), status.HTTP_200_OK
